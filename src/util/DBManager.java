@@ -10,33 +10,45 @@ import javax.sql.DataSource;
 
 public class DBManager {
 
-	// 공공자원
-	public static Connection getConnection() throws Exception {
+	// 데이터베이스 접속
+		public static Connection getConnection() {
+			Connection conn = null;
+			try {
+				Context initContext = new InitialContext();
+				Context envContext = (Context) initContext.lookup("java:/comp/env");
+				
+				// jdbc/myoracle이란 이름을 객체를 찾아서 DataSource가 받는다.
+				DataSource ds = (DataSource) envContext.lookup("jdbc/myoracle");
+				
+				// ds가 생성되었으므로 Connection을 구합니다.
+				conn = ds.getConnection();
 
-		Context initContext = new InitialContext();
-		Context envContext = (Context) initContext.lookup("java:/comp/env");
-		DataSource ds = (DataSource) envContext.lookup("jdbc/myoracle");
-		Connection conn = ds.getConnection();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return conn;
 
-		return conn;
+		}
+
+		// select을 수행한 후 리소스 해제를 위한 메소드 -> ResultSet
+		public static void close(Connection conn, Statement stmt, ResultSet rs) {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// insert, update, delete 작업을 수행한 후 리소스 해제를 위한 메소드
+		public static void close(Connection conn, Statement stmt) {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
-
-	// select connection close
-	public static void close(Connection conn, Statement stmt, ResultSet rs) throws Exception {
-
-		rs.close();
-		stmt.close();
-		conn.close();
-
-	}
-
-	// insert, update, delete connection close
-	public static void close(Connection conn, Statement stmt) throws Exception {
-
-		stmt.close();
-		conn.close();
-
-	}
-
-}
