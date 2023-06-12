@@ -19,9 +19,9 @@ public class MemberDAO {
 		return instance;
 	}
 
-	public int confirmID(String userid) {
+	public int confirmID(String id) {
 		int result = -1;
-		String sql = "select * from member where userid=?";
+		String sql = "select * from member where id=?";
 
 		Connection connn = null;
 		PreparedStatement pstmt = null;
@@ -30,7 +30,7 @@ public class MemberDAO {
 		try {
 			connn = DBManager.getConnection();
 			pstmt = connn.prepareStatement(sql);
-			pstmt.setString(1, userid);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = 1;
@@ -47,7 +47,7 @@ public class MemberDAO {
 
 	public MemberVO getMember(String id) {
 		MemberVO memberVO = null;
-		String sql = "select * from member where userid=?";
+		String sql = "select * from member where id=?";
 
 		Connection connn = null;
 		PreparedStatement pstmt = null;
@@ -60,7 +60,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				memberVO = new MemberVO();
-				memberVO.setUserid(rs.getString("userid"));
+				memberVO.setId(rs.getString("id"));
 				memberVO.setPwd(rs.getString("pwd"));
 				memberVO.setName(rs.getString("name"));
 				memberVO.setEmail(rs.getString("email"));
@@ -76,8 +76,8 @@ public class MemberDAO {
 
 	public int insertMember(MemberVO memberVO) {
 		int result = 0;
-		String sql = "insert into member(userid, pwd, name, zip_num,";
-		sql += " address, phone) values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into member(id, pwd, name, ";
+		sql += " email, phone) values(?, ?, ?, ?, ?)";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -85,10 +85,11 @@ public class MemberDAO {
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVO.getUserid());
+			pstmt.setString(1, memberVO.getId());
 			pstmt.setString(2, memberVO.getPwd());
 			pstmt.setString(3, memberVO.getName());
-			pstmt.setString(6, memberVO.getPhone());
+			pstmt.setString(4, memberVO.getEmail());
+			pstmt.setString(5, memberVO.getPhone());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

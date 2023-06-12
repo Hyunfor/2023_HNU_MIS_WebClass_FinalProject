@@ -3,22 +3,21 @@ package com.najagso.dto;
 public class MemberVO {
 	// 필드
 	private String name;
-	private String userid;
+	private String id;
 	private String pwd;
 	private String email;
 	private String phone;
-	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getUserid() {
-		return userid;
+	public String getId() {
+		return id;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getPwd() {
 		return pwd;
@@ -41,8 +40,7 @@ public class MemberVO {
 	
 	@Override
 	public String toString() {
-		return "MemberVO [name=" + name + ", userid=" + userid + ", pwd=" + pwd + ", email=" + email + ", phone="
-				+ phone + "]";
+		return "MemberVO [name=" + name + ", id=" + id + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone + "]";
 	}
 	
 }
