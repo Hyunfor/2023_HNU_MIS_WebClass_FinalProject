@@ -19,8 +19,8 @@ public class IndexAction implements Action {
     String url = "/index.jsp";
     
     ArticleDAO articleDAO=ArticleDAO.getInstance();
-    ArrayList<ArticleVO> newProductList = articleDAO.listNewProduct();
-    ArrayList<ArticleVO> bestProductList = articleDAO.listBestProduct();
+    ArrayList<ArticleVO> newArticleList = articleDAO.listNewArticle();
+    ArrayList<ArticleVO> bestArticleList = articleDAO.listBestArticle();
     
     request.setAttribute("newArticleList", newArticleList);
     request.setAttribute("bestArticleList", bestArticleList);

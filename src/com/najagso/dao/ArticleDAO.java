@@ -36,10 +36,9 @@ public class ArticleDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ArticleVO article = new ArticleVO();
-				article.setPseq(rs.getInt("pseq"));
+				article.setId(rs.getInt("id"));
 				article.setName(rs.getString("name"));
-				article.setPrice2(rs.getInt("price2"));
-				article.setImage(rs.getString("image"));
+				article.setContent(rs.getString("title"));
 				articleList.add(article);
 			}
 		} catch (Exception e) {
@@ -65,10 +64,9 @@ public class ArticleDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ArticleVO article = new ArticleVO();
-				article.setPseq(rs.getInt("pseq"));
+				article.setId(rs.getInt("id"));
 				article.setName(rs.getString("name"));
-				article.setPrice2(rs.getInt("price2"));
-				article.setImage(rs.getString("image"));
+				article.setContent(rs.getString("title"));
 				articleList.add(article);
 			}
 		} catch (Exception e) {
