@@ -19,7 +19,7 @@
     <!--로고 들어가는 곳 시작--->  
     <div id="logo">
       <a href="NajagsoServlet?command=index">
-        <img src="img/logo.png" width="180" height="100" alt="nojagso">
+        <img src="img/logo.png" width="180" height="100" alt="najagso">
       </a>  
     </div>
     <!--로고 들어가는 곳 끝-->     
@@ -54,19 +54,19 @@
     <nav id="top_menu">
       <ul>
         <li>
-          <a href="NajagsoServlet?command=catagory&kind=1">Heels</a>
+          <a href="NajagsoServlet?command=catagory&kind=1">공지</a>
         </li>  
         <li>
-          <a href="NajagsoServlet?command=catagory&kind=2">Boots</a>
+          <a href="NajagsoServlet?command=catagory&kind=2">자유</a>
         </li>  
         <li>
-          <a href="NajagsoServlet?command=catagory&kind=3">Sandals</a>
+          <a href="NajagsoServlet?command=catagory&kind=3">게임</a>
         </li> 
         <li>
-          <a href="NajagsoServlet?command=catagory&kind=4">Sneakers</a>
+          <a href="NajagsoServlet?command=catagory&kind=4">영화/애니</a>
         </li> 
         <li>
-          <a href="NajagsoServlet?command=catagory&kind=5">On Sale</a>
+          <a href="NajagsoServlet?command=catagory&kind=5">요리</a>
         </li>  
       </ul>
     </nav>
