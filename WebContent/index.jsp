@@ -2,25 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<!--메인 이미지 들어가는 곳 시작 --->
+<!--베너 광고 들어가는 곳 시작 --->
 <div class="clear"></div>
-<div id="main_img">
-	<img src="images/main_img.jpg">
+<!-- 슬릭슬라이더로 작업예정 -->
+<div id="money_img">
+	<a href="NajagsoServlet?command=index">
+        <img src="img/logo.png" width="971" height="103" alt="najagso">
+      </a>  
 </div>
-<!--메인 이미지 들어가는 곳 끝--->
+<!--베너 광고 들어가는 곳 시작--->
 
 <div class="clear"></div>
 
 <div id="front">
 	<h2>새로운 올라온 글</h2>
-	<div id="bestProduct">
-		<c:forEach items="${newProductList }" var="productVO">
-			<div id="item">
-				<a
-					href="NajagsoServlet?command=product_detail&pseq=${productVO.pseq}">
-					<img src="product_images/${productVO.image}" />
-					<h3>${productVO.name}</h3>
-					<p>${productVO.price2}</p>
+	<div id="newArticle">
+		<c:forEach items="${newArticleList }" var="articleVO">
+			<div id="article">
+				<a href="NajagsoServlet?command=article_detail&id=${articleVO.id}">
+					<h3>${articleVO.title}</h3>
+					<p>${articleVO.content}</p>
 				</a>
 			</div>
 		</c:forEach>
@@ -28,14 +29,12 @@
 	<div class="clear"></div>
 
 	<h2>인기 글</h2>
-	<div id="bestProduct">
-		<c:forEach items="${bestProductList}" var="productVO">
-			<div id="item">
-				<a
-					href="NajagsoServlet?command=product_detail&pseq=${productVO.pseq}">
-					<img src="product_images/${productVO.image}" />
-					<h3>${productVO.name}</h3>
-					<p>${productVO.price2}</p>
+	<div id="bestArticle">
+		<c:forEach items="${bestArticleList}" var="articleVO">
+			<div id="article">
+				<a href="NajagsoServlet?command=article_detail&id=${articleVO.id}">
+					<h3>${articleVO.title}</h3>
+					<p>${articleVO.content}</p>
 				</a>
 			</div>
 		</c:forEach>
