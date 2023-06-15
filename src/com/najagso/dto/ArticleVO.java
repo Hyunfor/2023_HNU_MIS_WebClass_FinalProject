@@ -62,4 +62,5 @@ public class ArticleVO {
 				+ ", readcount=" + readcount + ", writedate=" + writedate + "]";
 	}
 	
+	
 }

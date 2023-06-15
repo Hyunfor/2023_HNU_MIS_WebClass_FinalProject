@@ -32,7 +32,7 @@ public class AdminArticleListAction implements Action {
 		request.setAttribute("tpage", tpage);
 
 		ArticleDAO articleDAO = ArticleDAO.getInstance();
-		ArrayList<ArticleVO> productList = articleDAO.listArticle(Integer.parseInt(tpage), key);
+		ArrayList<ArticleVO> articleList = articleDAO.listArticle(Integer.parseInt(tpage), key);
 
 		String paging = articleDAO.pageNumber(Integer.parseInt(tpage), key);
 

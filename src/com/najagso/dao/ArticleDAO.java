@@ -344,8 +344,45 @@ public class ArticleDAO {
 	/*
 	 * * 관리자 모드에서 사용되는 메소드 *
 	 */
+	
+	// 모든 게시글
+	public int totalRecord(String article_name) {
+	    int total_pages = 0;    
+	    String sql = "select count(*) from article where name like '%'||?||'%'";
 
-	public ArrayList<ArticleVO> listArticle(int tpage, int id) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet pageset = null;
+	    
+	    try {
+	      con = DBManager.getConnection();
+	      pstmt = con.prepareStatement(sql);
+
+	      if (article_name.equals("")){
+	        pstmt.setString(1, "%");
+	      }
+	      else{
+	        pstmt.setString(1, article_name);
+	      }
+	      pageset = pstmt.executeQuery();
+
+	      if (pageset.next()) {
+	        total_pages = pageset.getInt(1); // 레코드의 개수
+	        pageset.close();
+	      }
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    } finally {
+	      DBManager.close(con, pstmt);
+	    }  
+	    return total_pages;
+	  }
+
+	  static int view_rows = 5; // 페이지의 개수
+	  static int counts = 5; // 한 페이지에 나타낼 상품의 개수
+
+	 //게시글 리스트
+	public ArrayList<ArticleVO> listArticle(int tpage, String article_name) {
 		ArrayList<ArticleVO> articleList = new ArrayList<ArticleVO>();
 
 		String str = "select id, name, pass, title, content "
@@ -376,13 +413,11 @@ public class ArticleDAO {
 
 				while (count < counts) {
 					ArticleVO article = new ArticleVO();
-					article.setPseq(rs.getInt(1));
-					article.setIndate(rs.getTimestamp(2));
+					article.setId(rs.getInt(1));
+					article.setPass(rs.getString(2));
 					article.setName(rs.getString(3));
-					article.setPrice1(rs.getInt(4));
-					article.setPrice2(rs.getInt(5));
-					article.setUseyn(rs.getString(6));
-					article.setBestyn(rs.getString(7));
+					article.setTitle(rs.getString(4));
+					article.setContent(rs.getString(5));
 					articleList.add(article);
 					if (rs.isLast()) {
 						break;
@@ -399,14 +434,16 @@ public class ArticleDAO {
 		return articleList;
 	}
 
+	// 페이지 넘버
+	
 	public String pageNumber(int tpage, String name) {
 		String str = "";
 
 		int total_pages = totalRecord(name);
-		int article_count = total_pages / counts + 1;
+		int page_count = total_pages / counts + 1;
 
 		if (total_pages % counts == 0) {
-			article_count--;
+			page_count--;
 		}
 		if (tpage < 1) {
 			tpage = 1;
@@ -422,7 +459,7 @@ public class ArticleDAO {
 			str += "<a href='NajagsoServlet?command=admin_article_list&tpage=1&key=" + name
 					+ "'>&lt;&lt;</a>&nbsp;&nbsp;";
 			str += "<a href='NajagsoServlet?command=admin_article_list&tpage=" + (start_page - 1);
-			str += "&key=<%=product_name%>'>&lt;</a>&nbsp;&nbsp;";
+			str += "&key=<%=article_name%>'>&lt;</a>&nbsp;&nbsp;";
 		}
 
 		for (int i = start_page; i <= end_page; i++) {
