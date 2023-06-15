@@ -33,6 +33,17 @@ SELECT * FROM MEMBER WHERE USERID='somi';
 DELETE FROM MEMBER WHERE USERID='somi';
 COMMIT;
 
+create table worker(          
+    id          varchar2(20) primary key,
+    pwd         varchar2(20),
+    name        varchar2(40),
+    phone       varchar2(20)
+);
+
+-- 샘플 데이터 입력
+insert into worker values('admin', 'admin', 'ＧＭ', '010-777-7777');
+COMMIT;
+
 drop table article;
 
 -- article 테이블 생성

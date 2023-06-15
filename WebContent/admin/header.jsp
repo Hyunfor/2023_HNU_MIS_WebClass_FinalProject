@@ -22,7 +22,7 @@
 		<header>			
 			<div id="logo">
 				<a href="NajagsoServlet?command=admin_login_form"> 
-					<img style="width:800px" src="admin/images/logo.png">
+					<img style="width:800px" src="admin/images/bar_01.gif">
 					<img src="admin/images/text.gif">
 				</a>
 			</div>	

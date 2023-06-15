@@ -27,7 +27,7 @@ public class AdminLoginAction implements Action {
     if (result == 1) {// 로그인 성공
       HttpSession session = request.getSession();
       session.setAttribute("workerId", workerId);
-      url = "NajagsoServlet?command=admin_product_list";
+      url = "NajagsoServlet?command=admin_article_list";
     } else if (result == 0) {
       msg = "비밀번호를 확인하세요.";
     } else if (result == -1) {
