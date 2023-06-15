@@ -16,7 +16,7 @@ public class AdminArticleListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String url = "admin/product/productList.jsp";
+		String url = "admin/article/articleList.jsp";
 
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");

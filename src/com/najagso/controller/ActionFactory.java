@@ -1,5 +1,6 @@
 package com.najagso.controller;
 
+import com.najagso.admin.controller.AdminArticleListAction;
 import com.najagso.admin.controller.AdminIndexAction;
 import com.najagso.admin.controller.AdminLoginAction;
 import com.najagso.admin.controller.AdminLogoutAction;
@@ -54,6 +55,8 @@ public class ActionFactory {
 			action = new AdminLoginAction();
 		} else if (command.equals("admin_logout")) {
 			action = new AdminLogoutAction();
+		} else if (command.equals("admin_article_list")) {
+			action = new AdminArticleListAction();
 		}
 		return action;
 	}

@@ -4,46 +4,46 @@
 <%@ include file="/admin/sub_menu.jsp"%>
 
 <article>
-<h1>상품리스트</h1>	
+<h1>게시글 리스트</h1>	
 <form name="frm" method="post">
 <table>
   <tr>
   <td width="642">
-      상품명 
+      제목 
      <input type="text" name="key">
      <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">
      <input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total()">
-     <input class="btn" type="button" name="btn_write" value="상품등록" onClick="go_wrt()">
+     <input class="btn" type="button" name="btn_write" value="게시글 등록" onClick="go_wrt()">
   </td>
   </tr>
 </table>
-<table id="productList">
+<table id="articleList">
     <tr>
-        <th>번호</th><th>상품명</th><th>원가</th><th>판매가</th><th>등록일</th><th>사용유무</th>
+        <th>번호</th><th>제목</th><th>내용</th><th>작성자</th><th>등록일</th><th>삭제일</th>
     </tr>
     <c:choose>
-    <c:when test="${productListSize<=0}">
+    <c:when test="${articleListSize<=0}">
     <tr>
       <td width="100%" colspan="7" align="center" height="23">
-        등록된 상품이 없습니다.
+        등록된 게시글이 없습니다.
       </td>      
     </tr>
     </c:when>
 	<c:otherwise>
-	<c:forEach items="${productList}" var="productVO">
+	<c:forEach items="${articleList}" var="articleVO">
     <tr>
-      <td height="23" align="center" >${productVO.pseq}</td>
+      <td height="23" align="center" >${articleVO.pseq}</td>
       <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
-        <a href="#" onClick="go_detail('${tpage}', '${productVO.pseq}')">
-    	 ${productVO.name}     
+        <a href="#" onClick="go_detail('${tpage}', '${articleVO.pseq}')">
+    	 ${articleVO.name}     
    		</a>
    	  </td>
-      <td><fmt:formatNumber value="${productVO.price1}"/></td>
-      <td><fmt:formatNumber value="${productVO.price2}"/></td>
-      <td><fmt:formatDate value="${productVO.indate}"/></td>
+      <td><fmt:formatNumber value="${articleVO.price1}"/></td>
+      <td><fmt:formatNumber value="${articleVO.price2}"/></td>
+      <td><fmt:formatDate value="${articleVO.indate}"/></td>
       <td>
       	<c:choose>
-   	 		<c:when test='${productVO.useyn=="1"}'>미사용</c:when>
+   	 		<c:when test='${articleVO.useyn=="1"}'>미사용</c:when>
    	 		<c:otherwise>사용</c:otherwise>   	 		
    	 	</c:choose>	 
    	  </td> 
