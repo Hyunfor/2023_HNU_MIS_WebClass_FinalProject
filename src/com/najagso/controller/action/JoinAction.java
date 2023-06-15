@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import com.najagso.dao.MemberDAO;
 import com.najagso.dto.MemberVO;
 
-
 public class JoinAction implements Action {
 
   @Override

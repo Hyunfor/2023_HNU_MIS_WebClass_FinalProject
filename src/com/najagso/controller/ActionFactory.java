@@ -4,7 +4,9 @@ import com.najagso.admin.controller.AdminIndexAction;
 import com.najagso.admin.controller.AdminLoginAction;
 import com.najagso.admin.controller.AdminLogoutAction;
 import com.najagso.controller.action.Action;
+import com.najagso.controller.action.ContractAction;
 import com.najagso.controller.action.JoinAction;
+import com.najagso.controller.action.JoinFormAction;
 import com.najagso.controller.action.LoginAction;
 import com.najagso.controller.action.LoginFormAction;
 import com.najagso.controller.action.LogoutAction;
@@ -25,12 +27,16 @@ public class ActionFactory {
 		System.out.println("ActionFactory  :" + command);
 		
 		/* 일반 유저 */
-		if (command.equals("login_form")) {
+		if (command.equals("contract")) {
+			action = new ContractAction();
+		} else if (command.equals("login_form")) {
 			action = new LoginFormAction();
 		} else if (command.equals("login")) {
 			action = new LoginAction();
 		} else if (command.equals("logout")) {
 			action = new LogoutAction();
+		} else if (command.equals("join_form")) {
+			action = new JoinFormAction();
 		} else if (command.equals("join")) {
 			action = new JoinAction();
 		}
