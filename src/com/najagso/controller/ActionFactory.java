@@ -17,6 +17,11 @@ import com.najagso.controller.action.JoinFormAction;
 import com.najagso.controller.action.LoginAction;
 import com.najagso.controller.action.LoginFormAction;
 import com.najagso.controller.action.LogoutAction;
+import com.najagso.controller.action.MyPageAction;
+import com.najagso.controller.action.QnaListAction;
+import com.najagso.controller.action.QnaViewAction;
+import com.najagso.controller.action.QnaWriteAction;
+import com.najagso.controller.action.QnaWriteFormAction;
 
 public class ActionFactory {
 	private static ActionFactory instance = new ActionFactory();
@@ -50,7 +55,17 @@ public class ActionFactory {
 			action = new IdCheckFormAction();
 		} else if (command.equals("join")) {
 			action = new JoinAction();
-		} 
+		} else if (command.equals("mypage")) {
+			action = new MyPageAction();
+		} else if (command.equals("qna_list")) {
+			action = new QnaListAction();
+		} else if (command.equals("qna_write_form")) {
+			action = new QnaWriteFormAction();
+		} else if (command.equals("qna_write")) {
+			action = new QnaWriteAction();
+		} else if (command.equals("qna_view")) {
+			action = new QnaViewAction();
+		}
 
 		// 관리자
 		if (command.equals("admin_login_form")) {

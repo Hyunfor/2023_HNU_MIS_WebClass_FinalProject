@@ -4,10 +4,9 @@
 
 <!--베너 광고 들어가는 곳 시작 --->
 <div class="clear"></div>
-<!-- 슬릭슬라이더로 작업예정 -->
-<div id="money_img">
+<div id="banner_img">
 	<a href="NajagsoServlet?command=index">
-        <img src="img/logo.png" width="971" height="103" alt="najagso">
+        <img src="img/banner01.jpg" width="971" height="103" alt="najagso">
       </a>  
 </div>
 <!--베너 광고 들어가는 곳 시작--->
