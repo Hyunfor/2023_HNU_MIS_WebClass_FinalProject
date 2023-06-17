@@ -5,6 +5,9 @@ import com.najagso.admin.controller.AdminIndexAction;
 import com.najagso.admin.controller.AdminLoginAction;
 import com.najagso.admin.controller.AdminLogoutAction;
 import com.najagso.admin.controller.AdminMemberListAction;
+import com.najagso.admin.controller.AdminQnaDetailAction;
+import com.najagso.admin.controller.AdminQnaListAction;
+import com.najagso.admin.controller.AdminQnaResaveAction;
 import com.najagso.controller.action.Action;
 import com.najagso.controller.action.ContractAction;
 import com.najagso.controller.action.IdCheckFormAction;
@@ -60,6 +63,12 @@ public class ActionFactory {
 			action = new AdminArticleListAction();
 		} else if (command.equals("admin_member_list")) {
 			action = new AdminMemberListAction();
+		} else if (command.equals("admin_qna_list")) {
+			action = new AdminQnaListAction();
+		} else if (command.equals("admin_qna_detail")) {
+			action = new AdminQnaDetailAction();
+		} else if (command.equals("admin_qna_repsave")) {
+			action = new AdminQnaResaveAction();
 		}
 		return action;
 	}

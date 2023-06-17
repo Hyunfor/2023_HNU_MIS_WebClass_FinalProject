@@ -6,6 +6,7 @@ CREATE TABLE MEMBER (
     PWD VARCHAR2(10),
     EMAIL VARCHAR2(20),
     PHONE CHAR(13),
+    indate date default sysdate,
     ADMIN NUMBER(1) DEFAULT 0,
     -- 0: 사용자, 1: 관리자
     PRIMARY KEY(id)
@@ -68,3 +69,25 @@ commit;
 
 SELECT * FROM article;
 
+
+create table qna (
+  qseq        number(5) primary key,  -- 글번호 
+  title     varchar(300),            -- 제목
+  content     varchar(1000),          -- 문의내용
+  reply       varchar(1000),           -- 답변내용
+  id          varchar(20),                 -- 작성자(FK : member.id) 
+  rep         char(1) default '1',        --1:답변 무  2:답변 유  
+  indate      date default sysdate     -- 작성일
+); 
+
+CREATE SEQUENCE qna_seq START WITH 1 INCREMENT BY 1;
+
+insert into qna (qseq, title, content, id)
+values(qna_seq.nextval, '테스트', '질문내용1', 'one');
+update qna SET reply='답변내용', rep='2';
+
+insert into qna (qseq, title, content, id)
+values(qna_seq.nextval, '테스트2', '질문내용2', 'one');
+commit;
+
+SELECT * FROM qna;
