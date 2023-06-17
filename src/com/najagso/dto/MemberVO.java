@@ -1,5 +1,7 @@
 package com.najagso.dto;
 
+import java.sql.Timestamp;
+
 public class MemberVO {
 	// 필드
 	private String name;
@@ -7,6 +9,11 @@ public class MemberVO {
 	private String pwd;
 	private String email;
 	private String phone;
+	private Timestamp indate;
+	
+	public void setIndate(Timestamp indate) {
+		this.indate = indate;
+	}
 	public String getName() {
 		return name;
 	}
@@ -38,9 +45,14 @@ public class MemberVO {
 		this.phone = phone;
 	}
 	
+	public Timestamp getIndate() {
+		return indate;
+	}
+	
 	@Override
 	public String toString() {
-		return "MemberVO [name=" + name + ", id=" + id + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone + "]";
+		return "MemberVO [name=" + name + ", id=" + id + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
+				+ ", indate=" + indate + "]";
 	}
 	
 }

@@ -19,7 +19,7 @@
 </table>
 <table id="articleList">
     <tr>
-        <th>번호</th><th>제목</th><th>내용</th><th>작성자</th><th>등록일</th><th>삭제일</th>
+        <th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th>
     </tr>
     <c:choose>
     <c:when test="${articleListSize<=0}">
@@ -32,21 +32,15 @@
 	<c:otherwise>
 	<c:forEach items="${articleList}" var="articleVO">
     <tr>
-      <td height="23" align="center" >${articleVO.pseq}</td>
+      <td height="23" align="center" >${articleVO.id}</td>
       <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
-        <a href="#" onClick="go_detail('${tpage}', '${articleVO.pseq}')">
+        <a href="#" onClick="go_detail('${tpage}', '${articleVO.id}')">
     	 ${articleVO.name}     
    		</a>
    	  </td>
-      <td><fmt:formatNumber value="${articleVO.price1}"/></td>
-      <td><fmt:formatNumber value="${articleVO.price2}"/></td>
-      <td><fmt:formatDate value="${articleVO.indate}"/></td>
-      <td>
-      	<c:choose>
-   	 		<c:when test='${articleVO.useyn=="1"}'>미사용</c:when>
-   	 		<c:otherwise>사용</c:otherwise>   	 		
-   	 	</c:choose>	 
-   	  </td> 
+      <td>${articleVO.title}</td>
+      <td>${articleVO.readcount}</td>
+      <td>${articleVO.writedate}</td>
     </tr>
     </c:forEach>
     <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>

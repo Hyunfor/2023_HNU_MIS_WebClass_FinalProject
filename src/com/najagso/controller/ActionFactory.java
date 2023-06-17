@@ -4,6 +4,7 @@ import com.najagso.admin.controller.AdminArticleListAction;
 import com.najagso.admin.controller.AdminIndexAction;
 import com.najagso.admin.controller.AdminLoginAction;
 import com.najagso.admin.controller.AdminLogoutAction;
+import com.najagso.admin.controller.AdminMemberListAction;
 import com.najagso.controller.action.Action;
 import com.najagso.controller.action.ContractAction;
 import com.najagso.controller.action.IdCheckFormAction;
@@ -57,6 +58,8 @@ public class ActionFactory {
 			action = new AdminLogoutAction();
 		} else if (command.equals("admin_article_list")) {
 			action = new AdminArticleListAction();
+		} else if (command.equals("admin_member_list")) {
+			action = new AdminMemberListAction();
 		}
 		return action;
 	}
