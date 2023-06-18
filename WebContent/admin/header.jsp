@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Najagso Admin</title>
 <link rel="stylesheet" href="admin/css/admin.css">
-<script type="text/javascript" src="admin/product/product.js"></script>
 <c:choose>
 	<c:when test="${empty workerId}">
 		<script type="text/javascript">
@@ -22,7 +21,7 @@
 		<header>			
 			<div id="logo">
 				<a href="NajagsoServlet?command=admin_login_form"> 
-					<img style="width:800px" src="admin/images/bar_01.gif">
+					<img style="width:800px" src="admin/images/logo.png">
 					<img src="admin/images/text.gif">
 				</a>
 			</div>	
