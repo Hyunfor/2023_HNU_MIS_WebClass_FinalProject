@@ -11,12 +11,12 @@ import com.najagso.dao.QnaDAO;
 import com.najagso.dto.MemberVO;
 import com.najagso.dto.QnaVO;
 
-public class QnaWriteAction implements Action {
+public class ArticleWriteAction implements Action {
 
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String url = "NajagsoServlet?command=qna_list";
+    String url = "NonageServlet?command=qna_list";
     
     HttpSession session = request.getSession();
     MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");    

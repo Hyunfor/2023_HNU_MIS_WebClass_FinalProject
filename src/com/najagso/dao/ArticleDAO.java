@@ -177,7 +177,7 @@ public class ArticleDAO {
 	}
 
 	// 게시판 글 상세 보기 : 글번호로 찾아온다 : 실패시 null;
-	public ArticleVO selectOneArticleByid(String id) {
+	public ArticleVO selectOneArticleByid(int id) {
 		String sql = "SELECT * FROM ARTICLE WHERE ID = ?";
 
 		ArticleVO aVo = null;
@@ -190,7 +190,7 @@ public class ArticleDAO {
 			conn = DBManager.getConnection();
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, id);
 
 			rs = pstmt.executeQuery();
 
@@ -470,7 +470,5 @@ public class ArticleDAO {
 		}
 		return str;
 	}
-
-	
 
 }

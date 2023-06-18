@@ -9,6 +9,10 @@ import com.najagso.admin.controller.AdminQnaDetailAction;
 import com.najagso.admin.controller.AdminQnaListAction;
 import com.najagso.admin.controller.AdminQnaResaveAction;
 import com.najagso.controller.action.Action;
+import com.najagso.controller.action.ArticleListAction;
+import com.najagso.controller.action.ArticleViewAction;
+import com.najagso.controller.action.ArticleWriteAction;
+import com.najagso.controller.action.ArticleWriteFormAction;
 import com.najagso.controller.action.BoardKindAction;
 import com.najagso.controller.action.ContractAction;
 import com.najagso.controller.action.IdCheckFormAction;
@@ -38,7 +42,7 @@ public class ActionFactory {
 	public Action getAction(String command) {
 		Action action = null;
 		System.out.println("ActionFactory  :" + command);
-		
+
 		/* 일반 유저 */
 		if (command.equals("index")) {
 			action = new IndexAction();
@@ -60,6 +64,14 @@ public class ActionFactory {
 			action = new JoinAction();
 		} else if (command.equals("mypage")) {
 			action = new MyPageAction();
+		} else if (command.equals("article_list")) {
+			action = new ArticleListAction();
+		} else if (command.equals("article_write_form")) {
+			action = new ArticleWriteFormAction();
+		} else if (command.equals("article_write")) {
+			action = new ArticleWriteAction();
+		} else if (command.equals("article_view")) {
+			action = new ArticleViewAction();
 		} else if (command.equals("qna_list")) {
 			action = new QnaListAction();
 		} else if (command.equals("qna_write_form")) {
