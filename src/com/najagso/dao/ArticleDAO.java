@@ -20,6 +20,12 @@ public class ArticleDAO {
 	public static ArticleDAO getInstance() {
 		return instance;
 	}
+	
+	public ArrayList<ArticleVO> getArticlesByBoard(String code) {
+		ArrayList<ArticleVO> articleList = new ArrayList<>();
+		
+		 return articleList;
+	}
 
 	// 새로운 글
 	public ArrayList<ArticleVO> listNewArticle() {
@@ -78,52 +84,35 @@ public class ArticleDAO {
 	}
 
 	// 게시글 목록 가져오기
-	public List<ArticleVO> selectAllBoards() {
-		String sql = "SELECT * FROM ARTICLE ORDER BY NUM DESC";
+	 public List<ArticleVO> selectAllBoards() {
+	        String sql = "SELECT * FROM ARTICLE ORDER BY NUM DESC";
 
-		List<ArticleVO> list = new ArrayList<ArticleVO>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	        List<ArticleVO> list = new ArrayList<ArticleVO>();
 
-		try {
+	        try (Connection conn = DBManager.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql);
+	             ResultSet rs = pstmt.executeQuery()) {
 
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+	            while (rs.next()) {
+	                ArticleVO aVo = new ArticleVO();
+	                aVo.setId(rs.getInt("id"));
+	                aVo.setName(rs.getString("name"));
+	                aVo.setPass(rs.getString("pass"));
+	                aVo.setTitle(rs.getString("title"));
+	                aVo.setContent(rs.getString("content"));
+	                aVo.setReadcount(rs.getInt("readcount"));
+	                aVo.setWritedate(rs.getTimestamp("writedate"));
+	                aVo.setBoard_id(rs.getInt("board_id"));
 
-			// 결과 값으로 리스트에 담기
-			while (rs.next()) {
+	                list.add(aVo);
+	            }
 
-				ArticleVO aVo = new ArticleVO();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 
-				aVo.setId(rs.getInt("id"));
-				aVo.setName(rs.getString("name"));
-				aVo.setPass(rs.getString("pass"));
-				aVo.setTitle(rs.getString("title"));
-				aVo.setContent(rs.getString("content"));
-				aVo.setReadcount(rs.getInt("readcount"));
-				aVo.setWritedate(rs.getTimestamp("writedate"));
-				aVo.setBoard_id(rs.getInt("board_id"));
-
-				// 리스트에 담기
-				list.add(aVo);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				DBManager.close(conn, pstmt, rs);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		return list;
-
-	}
+	        return list;
+	    }
 
 	// 게시글 작성
 	public void insertArticle(ArticleVO aVo) {
@@ -481,5 +470,7 @@ public class ArticleDAO {
 		}
 		return str;
 	}
+
+	
 
 }

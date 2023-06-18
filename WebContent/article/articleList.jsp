@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/admin/header.jsp"%>
-<%@ include file="/admin/sub_menu.jsp"%>
+<%@ include file="/header.jsp"%>
 
 <article>
 	<h1>게시글 리스트</h1>
@@ -54,6 +53,6 @@
 		</table>
 	</form>
 </article>
-<%@ include file="/admin/footer.jsp"%>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>
