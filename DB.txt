@@ -178,3 +178,12 @@ values(qna_seq.nextval, '테스트2', '질문내용2', 'one');
 commit;
 
 SELECT * FROM qna;
+
+CREATE TABLE img (
+    id NUMBER(10) PRIMARY KEY,
+    name varchar(100),
+    pictureurl varchar(100),
+    description varchar(1000)
+);
+
+SELECT * FROM img;

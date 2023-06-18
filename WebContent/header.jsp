@@ -60,10 +60,10 @@
           <a href="NajagsoServlet?command=catagory&kind=2">자유</a>
         </li>  
         <li>
-          <a href="NajagsoServlet?command=catagory&kind=3">일상 팁</a>
+          <a href="NajagsoServlet?command=catagory&kind=3">일상</a>
         </li> 
         <li>
-          <a href="NajagsoServlet?command=catagory&kind=4">취미</a>
+          <a href="NajagsoServlet?command=catagory&kind=4">고민</a>
         </li> 
       </ul>
     </nav>
