@@ -104,6 +104,7 @@ public class ArticleDAO {
 				aVo.setContent(rs.getString("content"));
 				aVo.setReadcount(rs.getInt("readcount"));
 				aVo.setWritedate(rs.getTimestamp("writedate"));
+				aVo.setBoard_id(rs.getInt("board_id"));
 
 				// 리스트에 담기
 				list.add(aVo);
@@ -215,6 +216,7 @@ public class ArticleDAO {
 				aVo.setContent(rs.getString("content"));
 				aVo.setWritedate(rs.getTimestamp("writedate"));
 				aVo.setReadcount(rs.getInt("readcount"));
+				aVo.setBoard_id(rs.getInt("board_id"));
 
 			}
 

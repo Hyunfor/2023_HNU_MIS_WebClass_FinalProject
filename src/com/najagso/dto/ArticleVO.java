@@ -11,7 +11,7 @@ public class ArticleVO {
 	private String content;
 	private int readcount;
 	private Timestamp writedate;
-	
+	private int board_id;
 	public int getId() {
 		return id;
 	}
@@ -54,13 +54,17 @@ public class ArticleVO {
 	public void setWritedate(Timestamp writedate) {
 		this.writedate = writedate;
 	}
-	
+	public int getBoard_id() {
+		return board_id;
+	}
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
+	}
 	
 	@Override
 	public String toString() {
 		return "ArticleVO [id=" + id + ", pass=" + pass + ", name=" + name + ", title=" + title + ", content=" + content
-				+ ", readcount=" + readcount + ", writedate=" + writedate + "]";
+				+ ", readcount=" + readcount + ", writedate=" + writedate + ", board_id=" + board_id + "]";
 	}
-	
 	
 }

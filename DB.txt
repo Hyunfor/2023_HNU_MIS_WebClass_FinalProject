@@ -48,27 +48,114 @@ COMMIT;
 drop table article;
 
 -- article 테이블 생성
-CREATE TABLE article(
+CREATE TABLE article (
   id NUMBER(5) PRIMARY KEY,
-  PASS VARCHAR2(30),
-  NAME VARCHAR2(30),
-  TITLE  VARCHAR2(200),
-  CONTENT VARCHAR2(1000),
-  READCOUNT NUMBER(4) DEFAULT 0,
-  WRITEDATE DATE DEFAULT SYSDATE
+  pass VARCHAR2(30),
+  name VARCHAR2(30),
+  title VARCHAR2(200),
+  content VARCHAR2(1000),
+  readcount NUMBER(4) DEFAULT 0,
+  writedate DATE DEFAULT SYSDATE,
+  board_id NUMBER(5)
 );
 
-CREATE SEQUENCE article_SEQ START WITH 1 INCREMENT BY 1;
+SELECT sequence_name
+FROM user_sequences
+WHERE sequence_name = 'ARTICLE_SEQ';
 
--- article 데이터 추가
-insert into article values(article_SEQ.nextval, 1234,'이경영', '공지','내 성질 까먹은 모양이네?',0,SYSDATE);
-insert into article values(article_SEQ.nextval, 1234, '고니', '난 딴돈에','절반만 가져가.',0,SYSDATE);
-insert into article values(article_SEQ.nextval, 1234, '손석구', '넌','납치된거야',0,SYSDATE);
-insert into article values(article_SEQ.nextval, 1234, '마석도', '차 안빼','임마! ',0,SYSDATE);
-commit;
+DROP SEQUENCE article_seq;
+
+-- article_seq 시퀀스 생성
+CREATE SEQUENCE article_seq START WITH 1 INCREMENT BY 1;
+
+-- 예시 데이터 추가
+-- 공지 게시판
+INSERT INTO article (id, pass, name, title, content, readcount, writedate, board_id)
+VALUES (article_seq.nextval, '1234', '관리자', '공지사항 제목', '공지사항 내용', 0, SYSDATE, 1);
+
+-- 자유 게시판
+INSERT INTO article (id, pass, name, title, content, readcount, writedate, board_id)
+VALUES (article_seq.nextval, '1234', '일반유저', '자유게시판 제목', '자유게시판 내용', 0, SYSDATE, 2);
+
+-- 일상 게시판
+INSERT INTO article (id, pass, name, title, content, readcount, writedate, board_id)
+VALUES (article_seq.nextval, '1234', '일반유저', '일상게시판 제목', '일상게시판 내용', 0, SYSDATE, 3);
+
+-- 취미 게시판
+INSERT INTO article (id, pass, name, title, content, readcount, writedate, board_id)
+VALUES (article_seq.nextval, '1234', '일반유저', '취미게시판 제목', '취미게시판 내용', 0, SYSDATE, 4);
+
+COMMIT;
 
 SELECT * FROM article;
 
+-- article 테이블에 board_id 열 추가
+ALTER TABLE article
+ADD board_id NUMBER(10);
+
+SELECT * FROM board;
+
+drop table board;
+
+-- board 테이블 생성
+CREATE TABLE board (
+	id NUMBER(10) PRIMARY KEY,
+	regDate TIMESTAMP NOT NULL,
+	updateDate TIMESTAMP NOT NULL,
+	"code" VARCHAR2(20) NOT NULL UNIQUE,
+	"name" VARCHAR2(20) NOT NULL UNIQUE,
+	delStatus NUMBER(1) DEFAULT 0 NOT NULL,
+	delDate TIMESTAMP
+);
+
+-- 자유 게시판 데이터 추가
+INSERT INTO board (id, regDate, updateDate, "code", "name")
+VALUES (1, SYSTIMESTAMP, SYSTIMESTAMP, 'free1', '자유게시판');
+
+-- 일상 게시판 데이터 추가
+INSERT INTO board (id, regDate, updateDate, "code", "name")
+VALUES (2, SYSTIMESTAMP, SYSTIMESTAMP, 'daily1', '일상게시판');
+
+-- 취미 게시판 데이터 추가
+INSERT INTO board (id, regDate, updateDate, "code", "name")
+VALUES (3, SYSTIMESTAMP, SYSTIMESTAMP, 'hobby1', '취미게시판');
+commit;
+
+-- board_id를 board 테이블의 id 외래 키로 설정
+ALTER TABLE article
+ADD CONSTRAINT fk_board_id FOREIGN KEY (board_id) REFERENCES board(id);
+
+SELECT * FROM notice_board;
+
+drop table board;
+-- notice_board 테이블 생성
+CREATE TABLE notice_board (
+    id NUMBER(10) PRIMARY KEY,
+    title VARCHAR2(100) NOT NULL,
+    content VARCHAR2(1000) NOT NULL,
+    regDate TIMESTAMP NOT NULL,
+    updateDate TIMESTAMP NOT NULL
+);
+
+-- 시퀀스 생성
+CREATE SEQUENCE my_article_seq START WITH 1 INCREMENT BY 1;
+
+-- BEFORE INSERT 트리거 생성
+CREATE OR REPLACE TRIGGER article_trigger
+BEFORE INSERT ON article
+FOR EACH ROW
+BEGIN
+    :NEW.ID := my_article_seq.NEXTVAL;
+END;
+/
+
+-- 예시 데이터 추가
+INSERT INTO notice_board (id, title, content, regDate, updateDate)
+VALUES (1, '공지사항 제목1', '공지사항 내용1', SYSTIMESTAMP, SYSTIMESTAMP);
+
+INSERT INTO notice_board (id, title, content, regDate, updateDate)
+VALUES (2, '공지사항 제목2', '공지사항 내용2', SYSTIMESTAMP, SYSTIMESTAMP);
+commit;
 
 create table qna (
   qseq        number(5) primary key,  -- 글번호 

@@ -9,6 +9,7 @@ import com.najagso.admin.controller.AdminQnaDetailAction;
 import com.najagso.admin.controller.AdminQnaListAction;
 import com.najagso.admin.controller.AdminQnaResaveAction;
 import com.najagso.controller.action.Action;
+import com.najagso.controller.action.BoardKindAction;
 import com.najagso.controller.action.ContractAction;
 import com.najagso.controller.action.IdCheckFormAction;
 import com.najagso.controller.action.IndexAction;
@@ -43,6 +44,8 @@ public class ActionFactory {
 			action = new IndexAction();
 		} else if (command.equals("contract")) {
 			action = new ContractAction();
+		} else if (command.equals("catagory")) {
+			action = new BoardKindAction();
 		} else if (command.equals("login_form")) {
 			action = new LoginFormAction();
 		} else if (command.equals("login")) {
